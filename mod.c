@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 /**
@@ -9,8 +8,7 @@
  * @format_flags: format_flag modifiers.
  * @wid: A width modifier.
  * Return: The number of bytes stored to the buffer.
- */
-
+*/
 
 unsigned int print_width(buf_t *out, unsigned int printed,
 unsigned char format_flags, int wid)
@@ -35,7 +33,7 @@ return (ret);
  * @prec: A precision modifier.
  * @size: The size of the string.
  * Return: The number of bytes stored to the buffer.
- */
+*/
 
 unsigned int print_string_width(buf_t *out,
 unsigned char format_flags, int wid, int prec, int size)
@@ -61,7 +59,7 @@ return (ret);
  * @format_flags: format_flag modifiers.
  * @wid: A width modifier.
  * Return: The number of bytes stored to the buffer.
- */
+*/
 
 unsigned int print_neg_width(buf_t *out, unsigned int printed,
 unsigned char format_flags, int wid)
@@ -77,4 +75,3 @@ ret += _memcpy(out, &width, 1);
 
 return (ret);
 }
-

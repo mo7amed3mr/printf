@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 /**
@@ -8,16 +7,15 @@
  * @src: A pointer to the memory area to copy.
  * @n: The number of bytes to be copied.
  * Return: The number of bytes copied.
- */
-
+*/
 
 unsigned int _memcpy(buf_t *out, const char *src, unsigned int n)
 {
-	unsigned int index;
+	unsigned int ind;
 
-	for (index = 0; index < n; index++)
+	for (ind = 0; ind < n; ind++)
 	{
-		*(out->buffer) = *(src + index);
+		*(out->buffer) = *(src + ind);
 		(out->length)++;
 
 		if (out->length == 1024)
@@ -37,7 +35,7 @@ unsigned int _memcpy(buf_t *out, const char *src, unsigned int n)
 /**
  * free_buffer - Frees a buf_t struct.
  * @out: The buf_t struct to be freed.
- */
+*/
 
 void free_buffer(buf_t *out)
 {
@@ -49,7 +47,7 @@ void free_buffer(buf_t *out)
  * init_buffer - Initializes a variable of struct type buf_t.
  *
  * Return: A pointer to the initialized buf_t.
- */
+*/
 
 buf_t *init_buffer(void)
 {
@@ -71,4 +69,3 @@ buf_t *init_buffer(void)
 
 	return (out);
 }
-

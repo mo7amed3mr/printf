@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 /**
@@ -12,19 +11,20 @@
  * @precision: A precision modifier.
  *
  * Return: The number of bytes stored to the buffer.
- */
+*/
+
 unsigned int convert_sbase(buf_t *out_buffer, long int number,
 		char *base_string, unsigned char format_flags, int min_width, int precision)
 {
-	int base_size;
-	char digit, pad = '0';
+	int ba_size;
+	char dig, pad = '0';
 	unsigned int num_chars = 1;
 
-	for (base_size = 0; *(base_string + base_size);)
-		base_size++;
+	for (ba_size = 0; *(base_string + ba_size);)
+		ba_size++;
 
-	if (number >= base_size || number <= -base_size)
-		num_chars += convert_sbase(out_buffer, number / base_size, base_string,
+	if (number >= ba_size || number <= -ba_size)
+		num_chars += convert_sbase(out_buffer, number / ba_size, base_string,
 				format_flags, min_width - 1, precision - 1);
 
 	else
@@ -40,8 +40,8 @@ unsigned int convert_sbase(buf_t *out_buffer, long int number,
 		}
 	}
 
-	digit = base_string[(number < 0 ? -1 : 1) * (number % base_size)];
-	_memcpy(out_buffer, &digit, 1);
+	dig = base_string[(number < 0 ? -1 : 1) * (number % ba_size)];
+	_memcpy(out_buffer, &dig, 1);
 
 	return (num_chars);
 }
@@ -57,18 +57,19 @@ unsigned int convert_sbase(buf_t *out_buffer, long int number,
  * @precision: A precision modifier.
  *
  * Return: The number of bytes stored to the buffer.
- */
+*/
+
 unsigned int convert_ubase(buf_t *out_buffer, unsigned long int number,
 		char *base_string, unsigned char format_flags, int min_width, int precision)
 {
-	unsigned int base_size, num_chars = 1;
-	char digit, pad = '0', *prefix = "0x";
+	unsigned int ba_size, num_chars = 1;
+	char dig, pad = '0', *prefix = "0x";
 
-	for (base_size = 0; *(base_string + base_size);)
-		base_size++;
+	for (ba_size = 0; *(base_string + ba_size);)
+		ba_size++;
 
-	if (number >= base_size)
-		num_chars += convert_ubase(out_buffer, number / base_size, base_string,
+	if (number >= ba_size)
+		num_chars += convert_ubase(out_buffer, number / ba_size, base_string,
 				format_flags, min_width - 1, precision - 1);
 
 	else
@@ -91,9 +92,8 @@ unsigned int convert_ubase(buf_t *out_buffer, unsigned long int number,
 			num_chars += _memcpy(out_buffer, prefix, 2);
 	}
 
-	digit = base_string[(number % base_size)];
-	_memcpy(out_buffer, &digit, 1);
+	dig = base_string[(number % ba_size)];
+	_memcpy(out_buffer, &dig, 1);
 
 	return (num_chars);
 }
-

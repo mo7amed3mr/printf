@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 /**
@@ -12,13 +11,14 @@
  * @out: A buf_t struct containing a character array.
  *
  * Return: The number of bytes stored to the buffer.
- */
+*/
+
 unsigned int co_Int(va_list args, buf_t *out,
 		unsigned char format_flags, int wid, int prec, unsigned char length)
 {
-	long int d, copy;
+	long int d, cpy;
 	unsigned int ret = 0, count = 0;
-	char pad, space = ' ', neg = '-', plus = '+';
+	char pad, spc = ' ', neg = '-', plus = '+';
 
 	if (length == LONG)
 		d = va_arg(args, long int);
@@ -27,14 +27,14 @@ unsigned int co_Int(va_list args, buf_t *out,
 	if (length == SHORT)
 		d = (short)d;
 	if (SPACE_FLAG == 1 && d >= 0)
-		ret += _memcpy(out, &space, 1);
+		ret += _memcpy(out, &spc, 1);
 	if (prec <= 0 && MINUS_FLAG == 0)
 	{
 		if (d == LONG_MIN)
 			count += 19;
 		else
 		{
-			for (copy = (d < 0) ? -d : d; copy > 0; copy /= 10)
+			for (cpy = (d < 0) ? -d : d; cpy > 0; cpy /= 10)
 				count++;
 		}
 		count += (d == 0) ? 1 : 0, count += (d < 0) ? 1 : 0;
@@ -57,6 +57,7 @@ unsigned int co_Int(va_list args, buf_t *out,
 	ret += print_neg_width(out, ret, format_flags, wid);
 	return (ret);
 }
+
 /**
  * co_Binary - Converts an unsigned int argument to binary
  * and stores it to a buffer contained in a struct.
@@ -67,7 +68,7 @@ unsigned int co_Int(va_list args, buf_t *out,
  * @size: A length modifier.
  * @buffer: A buf_t struct containing a character array.
  * Return: The number of bytes stored to the buffer.
- */
+*/
 
 unsigned int co_Binary(va_list params, buf_t *buffer,
 		unsigned char modifiers, int width, int precision, unsigned char size)
@@ -89,7 +90,7 @@ unsigned int co_Binary(va_list params, buf_t *buffer,
  * @size: A length modifier.
  * @buffer: A buf_t struct containing a character array.
  * Return: The number of bytes stored to the buffer.
- */
+*/
 
 unsigned int co_Octal(va_list params, buf_t *buffer,
 		unsigned char format_flags, int width, int precision, unsigned char size)
@@ -127,7 +128,7 @@ unsigned int co_Octal(va_list params, buf_t *buffer,
  * @size: A length modifier.
  * @buffer: A buf_t struct containing a character array.
  * Return: The number of bytes stored to the buffer
- */
+*/
 
 unsigned int co_Decimal(va_list params, buf_t *buffer,
 		unsigned char modifiers, int width, int precision, unsigned char size)
@@ -150,4 +151,3 @@ unsigned int co_Decimal(va_list params, buf_t *buffer,
 
 	return (result);
 }
-
